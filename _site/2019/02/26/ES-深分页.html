@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+　　<html>
+　　<head>
+　　　　<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+　　　　<title>ES 2.x 升级 ES 6.x</title>
+　　</head>
+　　<body>
+　　　　<h1 id="es-2x-升级-es-6x">ES 2.x 升级 ES 6.x</h1>
+<p>26 Feb 2019</p>
+
+<h3 id="背景">背景</h3>
+<ul>
+  <li>es2.x 升级到 6.x，业务数据需要进行迁移</li>
+</ul>
+
+<h2 id="寻找迁移方案因经历了两次大的版本升级数据类型等发生变化导致不能直接从-2x-升级到-6x">寻找迁移方案，因经历了两次大的版本升级，数据类型等发生变化，导致不能直接从 2.x 升级到 6.x</h2>
+<ul>
+  <li><a href="http://tech.lede.com/2017/10/24/rd/server/ElasticSearch_migration_upgrade/">网友提供的工具</a>，支持 2.x 迁移到 5.x 等，不支持 2.x 迁移到 6.x</li>
+  <li><a href="https://discuss.elastic.co/t/migration-from-es2-1-to-es6-4/152600">官方论坛提供的方案</a>
+    <ul>
+      <li>先升级到最新的 5.x版本，在 5.x 正常运行后，从 5.x 升级到 6.x</li>
+      <li>并行运行两个集群，将索引逐个切换到新集群</li>
+      <li>reindex API 实现重新索引，无法直接进行，需要先升级到 5.x 然后 reindex 2.x 的索引，再滚动升级到 6.x</li>
+      <li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/reindex-upgrade-remote.html">使用远程的 reindex 可以将 5.6 之前的群集移动到 6.x 而不会中断服务。需要修改集群配置</a></li>
+    </ul>
+  </li>
+  <li>自己实现
+    <ul>
+      <li>编写脚本使用 scroll 从 2.x 读取数据写入 6.x，编写完成后运行时总是中断，提示找不到存活的节点，无法稳定运行</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="选择">选择</h2>
+<ul>
+  <li>双写，即同时写入两个集群（一个月），双写期间业务依旧使用 2.x 集群，待所有索引都过渡到 6.x 后可进行切换
+    <ul>
+      <li>时间：一个月时间不会影响相关事宜</li>
+      <li>投入：代码修改量较小，投入小</li>
+      <li>结果：可达到预期效果</li>
+    </ul>
+  </li>
+</ul>
+
+
+　　</body>
+　　</html>
