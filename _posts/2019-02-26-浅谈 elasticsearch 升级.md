@@ -1,9 +1,9 @@
 ---
-layout: default
+layout: post
 title: 记一次 elasticsearch 升级
+date: 2019-02-26 15:32:24.000000000 +09:00
 ---
-# {{ page.title }}
-{{ page.date | date_to_string }}
+
 <!-- 
 ## 背景
 

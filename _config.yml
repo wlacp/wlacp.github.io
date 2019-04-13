@@ -1,0 +1,49 @@
+# Basic
+title: wlacp's blog
+subtitle: A blog for computer knowledge
+welcome_message: 知识改变命运
+description: A blog for computer knowledge.
+creator: <a href="http://onev.cat">@onevcat</a>
+
+url: "http://vno.onevcat.com"
+
+permalink: /:year/:month/:title/
+
+# Format
+highlighter: rouge
+
+# supported colors: blue, green, purple, red, orange or slate. If you need clear, leave it empty.
+cover_color: red
+
+# The blog button should not be removed.
+blog_button:
+    title: Blog
+    description: Visit blog
+
+# Navigation buttons in the front page.
+nav:
+    - {title: SinaBlog, description: MySinaBlog, url: 'http://blog.sina.com.cn/lachp'}
+    # - {title: Another Button, description: A button, url: 'http://example.com'}
+
+# Pagination
+plugins: [jekyll-paginate]
+paginate: 10
+paginate_path: "page/:num/"
+
+# Comment
+comment:
+    disqus: vno-jekyll
+    # duoshuo: 
+    
+# Social
+social:
+    weibo: wlacp
+    github: wlacp
+    # twitter: wlacp
+    # gplus: 
+    mail: wlacp@sina.com
+
+# Google Analytics
+ga:
+    # id: your_ga_id
+    # host: your_host
