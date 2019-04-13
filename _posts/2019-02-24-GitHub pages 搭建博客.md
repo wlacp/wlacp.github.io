@@ -2,6 +2,8 @@
 layout: post
 title: GitHub pages 搭建博客
 date: 2019-02-24 15:32:24.000000000 +09:00
+categories: GitHub
+tags: GitHub-GitHub pages
 ---
 
 # 本地环境初始化
