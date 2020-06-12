@@ -3,6 +3,7 @@
 - 添加文件执行权限`chmod +x es.sh`
 - 创建当日索引，./es.sh 0
 - 创建昨天索引，./es.sh -1
+
 ```bash
 #!/bin/bash
 echo ....$(date +"%Y-%m-%d")定时任务开始....
