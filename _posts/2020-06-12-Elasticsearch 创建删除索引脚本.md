@@ -5,6 +5,7 @@
 - 创建昨天索引，./es.sh -1
 
 ```bash
+
 #!/bin/bash
 echo ....$(date +"%Y-%m-%d")定时任务开始....
 es_http_url=http://192.168.1.1:9200
@@ -21,6 +22,7 @@ createFun(){
   then
     day=$(date -d "${1} days" +%Y_%m_%d)
   fi
+  
   createIndexFun demo1_$day '{"index_patterns":["demo1_*"],"settings":{"index.number_of_shards":"4","index.number_of_replicas":"1","refresh_interval":"30s"},"mappings":{"demo":{"properties":{"field1":{"type":"long"},"field2":{"type":"keyword"},"field3":{"type":"text"},"field4":{"type":"integer"}}}}}'
   createIndexFun demo2_$day '{"index_patterns":["demo2_*"],"settings":{"index.number_of_shards":"4","index.number_of_replicas":"1","refresh_interval":"30s"},"mappings":{"demo":{"properties":{"field1":{"type":"long"},"field2":{"type":"keyword"},"field3":{"type":"text"},"field4":{"type":"integer"}}}}}'
   createIndexFun demo3_$day '{"index_patterns":["demo3_*"],"settings":{"index.number_of_shards":"4","index.number_of_replicas":"1","refresh_interval":"30s"},"mappings":{"demo":{"properties":{"field1":{"type":"long"},"field2":{"type":"keyword"},"field3":{"type":"text"},"field4":{"type":"integer"}}}}}'
@@ -35,7 +37,6 @@ createIndexFun(){
   then
      echo 索引$index已经创建，无需重复创建
   else
-
       echo 创建索引 $index 开始
       createIndex=$(curl -XPUT  $es_http_url/$index?pretty -H 'Content-type':'application/json' -d$data)
       if [[ $(echo createIndex | grep "error") != "" ]]
@@ -54,7 +55,7 @@ deleteFun(){
   then
     day=$(date -d "${1} days ago" +%Y_%m_%d)
   fi
-
+  
   deleteIndexFun demo1_$day
   deleteIndexFun demo2_$day
   deleteIndexFun demo3_$day
